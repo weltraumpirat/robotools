@@ -21,20 +21,23 @@
  */
 package org.robotools.data.copy
 {
-	public function safeGetPropertyOrDefault( target:*, name:String, defaultValue:* ):* {
+	/**
+	 * Returns the value of the field with the given name, if it
+	 * does exist and has a valid value, or the provided default value.  
+	 *  
+	 * @param target Any object instance.
+	 * @param name The name of the field to return.
+	 * @param defaultValue The value to return if the field does not contain a valid value.
+	 * @return The field value if it is valid, or the default value if the field is 
+	 * 			<code>null</code>, if any errors occur or a number type is <code>NaN</code>.
+	 */
+	 
+	 public function safeGetPropertyOrDefault( target:*, name:String, defaultValue:* ):* {
 		var result:*;
 		try {
 			result = target[name];
 		} catch (e:Error) {
 		}
-		if (result is Number || result is int || result is uint ) { 
-			if (isNaN(result)) 
-				return defaultValue;
-			else return result;
-		}
-		else if (result) 
-			return result;
-		else 
-			return defaultValue;
+		return result == null || ((result is Number || result is int || result is uint ) && isNaN( result )) ? defaultValue : result;
 	}
 }
