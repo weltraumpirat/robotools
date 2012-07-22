@@ -149,10 +149,13 @@ package org.robotools.data
 		[Test]
 		public function getsSafeDynamicPropertyOrDefaultValue () : void 
 		{
-			var obj:Object = {fontFamily:"Arial", fontSize:12, fontWeight:"bold", color:0x223455, arbitrary:"value"};
+			var obj:Object = {fontFamily:"Arial", nullValue:null, fontSize:12, someValue:NaN};
 			assertEquals( "Arial", safeGetPropertyOrDefault( obj, "fontFamily", "no value"));
-			assertEquals( "no value", safeGetPropertyOrDefault( obj, "nonexistantField", "no value"));
+			assertEquals( "no value", safeGetPropertyOrDefault( obj, "nullValue", "no value"));
 			assertEquals( 12, safeGetPropertyOrDefault( obj, "fontSize", 0));
+			assertEquals( 0, safeGetPropertyOrDefault( obj, "someValue", 0));
+			assertEquals( "no value", safeGetPropertyOrDefault( obj, "nonexistantField", "no value"));
+			assertEquals( 0, safeGetPropertyOrDefault( obj, "nonexistantField", 0));
 		}
 
 		[Test]
