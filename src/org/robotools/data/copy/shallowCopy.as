@@ -23,6 +23,13 @@ package org.robotools.data.copy
 {
 	import org.as3commons.reflect.Type;
 
+	/**
+	 * Creates a shallow copy of the provided instance.
+	 * 
+	 * @param from Any object instance.
+	 * @return A shallow copy.
+	 */
+	 
 	public function shallowCopy( from:* ):* {
 		var type:Type = Type.forInstance( from );
 		return ShallowObjectCopy.toType( from, type );
@@ -35,6 +42,13 @@ import org.as3commons.reflect.Variable;
 
 internal class ShallowObjectCopy
 {
+	/**
+	 * Creates an object of the desired type and populates its content with 
+	 * the values from the provided instance.
+	 * @param from Any object instance.
+	 * @param type The desired type.
+	 * @return A shallow copy.
+	 */
 	public static function toType( from:*, type:Type ):* {
 		if(isComplexType( type.name ))
 			return toComplexType( from, type );
@@ -65,18 +79,18 @@ internal class ShallowObjectCopy
 			to[i] = from[i];
 	}
 
-	public static function copyValues( from:*, to:*, type:Type ):void {
+	private static function copyValues( from:*, to:*, type:Type ):void {
 		copyProperties( from, to );
 		copyAccessors( type, to, from );
 		copyVariables( type, to, from );
 	}
 
-	public static function copyProperties( from:*, to:* ):void {
+	private static function copyProperties( from:*, to:* ):void {
 		for(var key:String in from)
 			copyValue( to, key, from );
 	}
 
-	public static function copyAccessors( type:Type, to:*, from:* ):void {
+	private static function copyAccessors( type:Type, to:*, from:* ):void {
 		for each(var accessor:Accessor in type.accessors)
 			if(accessor.isWriteable())
 				copyValue( to, accessor.name, from );

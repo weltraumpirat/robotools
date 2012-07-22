@@ -23,7 +23,13 @@ package org.robotools.data.copy
 {
 	import org.as3commons.reflect.Type;
 
-	public function copy( from:* ):* {
+	/**
+	 * Creates a deep copy of the provided instance.
+	 * 
+	 * @param from Any object instance.
+	 * @return A deep copy.
+	 */
+	 public function copy( from:* ):* {
 		var type:Type = Type.forInstance( from );
 		return ObjectCopy.toType( from, type );
 	}

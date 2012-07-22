@@ -28,13 +28,27 @@ package org.robotools.data.copy
 
 	internal class ObjectCopy
 	{
+		/**
+		 * Creates an object of the desired type and populates its content with 
+		 * the values from the provided instance.
+		 * @param from Any object instance.
+		 * @param type The desired type.
+		 * @return A deep copy.
+		 */
 		public static function toType( from:*, type:Type ):* {
 			if(isComplexType( type.name ))
 				return toComplexType( from, type );
 			else
 				return from;
 		}
-
+		/**
+		 * Copies the values from the source instance to the target instance,
+		 * using class information from the provided type.
+		 * 
+		 * @param from Any object instance.
+		 * @param to Any other object instance.
+		 * @param type The desired type of the target instance.
+		 */
 		public static function copyValues( from:*, to:*, type:Type ):void {
 			copyProperties( from, to );
 			copyAccessors( type, to, from );
@@ -63,6 +77,13 @@ package org.robotools.data.copy
 				to[i] = copy( from[i] );
 			}
 		}
+		
+		/**
+		 * Copies all dynamic properties from the source to the target.
+		 * 
+		 * @param Any object instance.
+		 * @param Any other object instance.
+		 */
 
 		public static function copyProperties( from:*, to:* ):void {
 			for(var key:String in from)
@@ -76,6 +97,15 @@ package org.robotools.data.copy
 			}
 		}
 
+		/**
+		 * Copies the values of all accessors available in the provided type from 
+		 * the source to the target instance. Values will not be copied, if an 
+		 * accessor is not writeable, or does not exist.
+		 * 
+		 * @param type The desired type.
+		 * @param from Any object instance.
+		 * @param to Any object instance.
+		 */
 		public static function copyAccessors( type:Type, to:*, from:* ):void {
 			for each(var accessor:Accessor in type.accessors)
 				if(accessor.isWriteable()) copyAccessorValue( to, accessor, from );
