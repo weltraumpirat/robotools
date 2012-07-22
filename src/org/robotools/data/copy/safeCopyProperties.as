@@ -26,6 +26,18 @@ package org.robotools.data.copy
 	import org.as3commons.reflect.Variable;
 	import org.robotools.data.enumerateProperties;
 
+	/**
+	 * Copies all dynamic properties from the source to the target.
+	 * 
+	 * Essentially, this does the same thing as copyProperties(), but uses preemptive 
+	 * checks instead of try/catch blocks to prevent errors, if a field does not
+	 * exist on either the source or the target.
+	 * 
+	 * @param from Any object instance.
+	 * @param to Any other object instance.
+	 * @param type The desired target type.
+	 * @return The target instance.
+	 */
 	public function safeCopyProperties( from:*, to:*, type:Type = null ):* {
 		var toType:Type = type ? type : Type.forInstance( to );
 		var props:Array = enumerateProperties( from );

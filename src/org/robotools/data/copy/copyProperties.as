@@ -21,6 +21,12 @@
  */
 package org.robotools.data.copy
 {
+	/**
+	 * Copies all dynamic properties from the source to the target.
+	 * 
+	 * @param from Any object instance.
+	 * @param to Any other object instance.
+	 */
 	public function copyProperties( from:*, to:* ):* {
 		ObjectCopy.copyProperties( from, to );
 		return to;

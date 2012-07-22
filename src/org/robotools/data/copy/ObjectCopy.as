@@ -81,10 +81,9 @@ package org.robotools.data.copy
 		/**
 		 * Copies all dynamic properties from the source to the target.
 		 * 
-		 * @param Any object instance.
-		 * @param Any other object instance.
+		 * @param from Any object instance.
+		 * @param to Any other object instance.
 		 */
-
 		public static function copyProperties( from:*, to:* ):void {
 			for(var key:String in from)
 				copyPropertyValue( to, key, from );
