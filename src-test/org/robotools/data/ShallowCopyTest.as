@@ -10,9 +10,9 @@ package org.robotools.data
 
 	public class ShallowCopyTest
 	{
-		private var itemToCopy:MovieClip;
+		private var itemToCopy:*;
 
-		private var copiedItem:MovieClip;
+		private var copiedItem:*;
 
 		[Before]
 		public function setUp():void {
@@ -22,11 +22,25 @@ package org.robotools.data
 		}
 
 		[Test]
-		public function makesAShallowCopy():void {
+		public function makesAShallowCopyWithDynamicProperties():void {
 			copiedItem = shallowCopy( itemToCopy );
 			assertEquals( "someValue", copiedItem.someValue );
 			assertNotNull( copiedItem.anotherClip );
 			assertTrue( itemToCopy.anotherClip == copiedItem.anotherClip );
+		}
+
+		[Test]
+		public function makesAShallowCopyOfAStronglyTypedClass():void {
+			itemToCopy = new TestClass();
+			itemToCopy.value1 = 1;
+			itemToCopy.value2 = "SomeValue";
+			var nestedObj:Object = {};
+			itemToCopy.value3 = nestedObj;
+
+			copiedItem = shallowCopy( itemToCopy );
+			assertEquals( 1, copiedItem.value1 );
+			assertEquals( "SomeValue", copiedItem.value2 );
+			assertEquals( nestedObj, copiedItem.value3 );
 		}
 
 		[After]
@@ -36,3 +50,5 @@ package org.robotools.data
 		}
 	}
 }
+
+
