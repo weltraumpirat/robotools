@@ -11,6 +11,7 @@ package org.robotools.data
 	import org.robotools.data.comparison.equals;
 	import org.robotools.data.copy.copy;
 	import org.robotools.data.copy.safeCopyProperties;
+	import org.robotools.data.copy.safeGetPropertyOrDefault;
 	import org.robotools.data.parsing.csvLineToAssoc;
 	import org.robotools.data.parsing.parseToColor;
 	import org.robotools.data.parsing.parseToFloat;
@@ -143,6 +144,15 @@ package org.robotools.data
 			assertEquals( "Arial", outObj.fontFamily );
 			assertEquals( "bold", outObj.fontWeight );
 			assertFalse( outObj.hasOwnProperty("arbitrary") );
+		}
+		
+		[Test]
+		public function getsSafeDynamicPropertyOrDefaultValue () : void 
+		{
+			var obj:Object = {fontFamily:"Arial", fontSize:12, fontWeight:"bold", color:0x223455, arbitrary:"value"};
+			assertEquals( "Arial", safeGetPropertyOrDefault( obj, "fontFamily", "no value"));
+			assertEquals( "no value", safeGetPropertyOrDefault( obj, "nonexistantField", "no value"));
+			assertEquals( 12, safeGetPropertyOrDefault( obj, "fontSize", 0));
 		}
 
 		[Test]
