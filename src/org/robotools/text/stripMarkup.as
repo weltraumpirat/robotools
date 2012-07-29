@@ -19,10 +19,9 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.text
-{
+package org.robotools.text {
 	public function stripMarkup( str:String ):String {
-		var ret:String = str.replace (/<[^>]+>/gm, "");
+		var ret:String = str.replace( /<[^>]+>/gm, "" );
 		return stripLineBreaks( stripLeadingWhitespace( ret ) );
 	}
 }

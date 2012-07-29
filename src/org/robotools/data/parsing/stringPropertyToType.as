@@ -19,31 +19,29 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.parsing
-{
+package org.robotools.data.parsing {
 	public function stringPropertyToType( valueHolder:Object, propertyName:String, returnType:Class ):* {
 		var value:* = ConversionUtil.getPropertyValue( valueHolder, propertyName );
 
-		if(returnType == Number)
+		if( returnType == Number )
 			return parseToFloat( value );
-		else if(returnType == int) 
+		else if( returnType == int )
 			return parseToInt( value );
-		else if(returnType == uint) 
+		else if( returnType == uint )
 			return parseToColor( value );
-		else if(returnType == Boolean) 
+		else if( returnType == Boolean )
 			return value === "true";
-		
+
 		return value;
 	}
 }
 
-internal class ConversionUtil
-{
+internal class ConversionUtil {
 	public static function getPropertyValue( valueHolder:*, propertyName:String ):* {
-		if(valueHolder && propertyName) {
+		if( valueHolder && propertyName ) {
 			try {
 				return valueHolder[propertyName];
-			} catch(e:Error) {
+			} catch( e:Error ) {
 			}
 		}
 		return null;

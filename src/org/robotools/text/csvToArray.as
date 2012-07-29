@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.text
-{
+package org.robotools.text {
 	public function csvToArray( data:String ):Array {
 		var lines:Array = CSV.getLines( data );
 		var keyArray:Array = CSV.getKeys( lines );
@@ -28,10 +27,9 @@ package org.robotools.text
 	}
 }
 
-
 import org.robotools.data.parsing.csvLineToAssoc;
-internal class CSV
-{
+
+internal class CSV {
 	public static function getLines( data:String ):Array {
 		return data.split( /\R/ );
 	}
@@ -42,8 +40,8 @@ internal class CSV
 
 	public static function getAssocArray( lines:Array ):Array {
 		var assocArray:Array = [];
-		var keyArray : Array = getKeys(lines);
-		for each(var line:String in lines)
+		var keyArray:Array = getKeys( lines );
+		for each( var line:String in lines )
 			assocArray.push( csvLineToAssoc( line, Vector.<String>( keyArray ) ) );
 		return assocArray;
 	}

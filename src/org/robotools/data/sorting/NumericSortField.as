@@ -19,14 +19,11 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.sorting
-{
+package org.robotools.data.sorting {
 	import mx.collections.SortField;
 
-
-	public class NumericSortField extends SortField
-	{
-		public function NumericSortField ( name:String ) {
+	public class NumericSortField extends SortField {
+		public function NumericSortField( name:String ) {
 			this.name = name;
 			numeric = true;
 		}

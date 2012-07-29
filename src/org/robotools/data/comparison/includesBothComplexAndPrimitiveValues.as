@@ -19,13 +19,12 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.comparison
-{
+package org.robotools.data.comparison {
 	public function includesBothComplexAndPrimitiveValues( ...args:* ):Boolean {
 		var type:String = null;
-		for each(var arg:* in args)
-			if(!type) type = valueType( arg );
-			else if(type != valueType( arg )) return true;
+		for each( var arg:* in args )
+			if( !type ) type = valueType( arg );
+			else if( type != valueType( arg ) ) return true;
 		return false;
 	}
 }

@@ -1,32 +1,31 @@
-/* Copyright (c) 2012 Tobias Goeschel
+/*
+ * Copyright (c) 2012 Tobias Goeschel.
  *
- * Permission is hereby granted, free of charge, to any person 
- * obtaining a copy of this software and associated documentation 
- * files (the "Software"), to deal in the Software without restriction, 
- * including without limitation the rights to use, copy, modify, merge, 
- * publish, distribute, sublicense, and/or sell copies of the Software, 
- * and to permit persons to whom the Software is furnished to do so, 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included 
- * in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics.drawing
-{
+package org.robotools.graphics.drawing {
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 
-
-	public class GraphRectangle extends GraphArea
-	{
+	public class GraphRectangle extends GraphArea {
 		private var _roundCorners:Number = 0;
 
 		private var _rectangle:Rectangle;
@@ -38,9 +37,21 @@ package org.robotools.graphics.drawing
 
 		override public function draw():void {
 			super.draw();
-			if(_roundCorners != 0) _parent.graphics.drawRoundRect( _rectangle.x, _rectangle.y, _rectangle.width, _rectangle.height, _roundCorners, _roundCorners );
-			else _parent.graphics.drawRect( _rectangle.x, _rectangle.y, _rectangle.width, _rectangle.height );
-			if(_fill) _parent.graphics.endFill();
+			if( _roundCorners == 0 )
+				drawRectangle();
+			else
+				drawRoundRectangle();
+			if( _fill )
+				_parent.graphics.endFill();
+		}
+
+		private function drawRectangle():void {
+			_parent.graphics.drawRect( _rectangle.x, _rectangle.y, _rectangle.width, _rectangle.height );
+		}
+
+		private function drawRoundRectangle():void {
+			_parent.graphics.drawRoundRect( _rectangle.x, _rectangle.y, _rectangle.width,
+											_rectangle.height, _roundCorners, _roundCorners );
 		}
 
 		public function fill( color:uint = 0, alpha:Number = 1, gradient:Gradient = null ):GraphRectangle {

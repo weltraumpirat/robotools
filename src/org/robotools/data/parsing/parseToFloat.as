@@ -19,17 +19,15 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.parsing
-{
+package org.robotools.data.parsing {
 	public function parseToFloat( float:String ):Number {
-		if(float != null) {
+		if( float != null ) {
 			return ParseToFloatHelper.convertStringToFloat( float );
 		} else return 0;
 	}
 }
 
-internal class ParseToFloatHelper
-{
+internal class ParseToFloatHelper {
 	public static function convertStringToFloat( float:String ):Number {
 		var numToParse:String = getNumberToParse( float );
 

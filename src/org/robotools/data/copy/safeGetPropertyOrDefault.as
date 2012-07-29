@@ -19,25 +19,25 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	/**
 	 * Returns the value of the field with the given name, if it
-	 * does exist and has a valid value, or the provided default value.  
-	 *  
+	 * does exist and has a valid value, or the provided default value.
+	 *
 	 * @param target Any object instance.
 	 * @param name The name of the field to return.
 	 * @param defaultValue The value to return if the field does not contain a valid value.
-	 * @return The field value if it is valid, or the default value if the field is 
-	 * 			<code>null</code>, if any errors occur or a number type is <code>NaN</code>.
+	 * @return The field value if it is valid, or the default value if the field is
+	 *             <code>null</code>, if any errors occur or a number type is <code>NaN</code>.
 	 */
-	 
-	 public function safeGetPropertyOrDefault( target:*, name:String, defaultValue:* ):* {
+
+	public function safeGetPropertyOrDefault( target:*, name:String, defaultValue:* ):* {
 		var result:*;
 		try {
 			result = target[name];
-		} catch (e:Error) {
+		} catch( e:Error ) {
 		}
-		return result == null || ((result is Number || result is int || result is uint ) && isNaN( result )) ? defaultValue : result;
+		return result == null || ((result is Number || result is int || result is uint ) && isNaN( result )) ?
+			   defaultValue : result;
 	}
 }

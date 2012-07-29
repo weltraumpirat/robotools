@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.comparison
-{
+package org.robotools.data.comparison {
 	public function isComplexType( typeName:String ):Boolean {
 		const PRIMITIVE_TYPES:Array = ["int", "uint", "String", "Number"];
 		return PRIMITIVE_TYPES.indexOf( typeName ) == -1;

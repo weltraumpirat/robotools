@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	import org.as3commons.reflect.Accessor;
 	import org.as3commons.reflect.Type;
 	import org.as3commons.reflect.Variable;
@@ -28,11 +27,11 @@ package org.robotools.data.copy
 
 	/**
 	 * Copies all dynamic properties from the source to the target.
-	 * 
-	 * Essentially, this does the same thing as copyProperties(), but uses preemptive 
+	 *
+	 * Essentially, this does the same thing as copyProperties(), but uses preemptive
 	 * checks instead of try/catch blocks to prevent errors, if a field does not
 	 * exist on either the source or the target.
-	 * 
+	 *
 	 * @param from Any object instance.
 	 * @param to Any other object instance.
 	 * @param type The desired target type.
@@ -43,11 +42,11 @@ package org.robotools.data.copy
 		var props:Array = enumerateProperties( from );
 
 		for each( var acc:Accessor in toType.accessors )
-			if(props.indexOf( acc.name ) > -1)
+			if( props.indexOf( acc.name )>-1 )
 				to[acc.name] = from[acc.name];
 
 		for each( var variable:Variable in toType.variables )
-			if(props.indexOf( variable.name ) > -1)
+			if( props.indexOf( variable.name )>-1 )
 				to[variable.name] = from[variable.name];
 
 		return to;

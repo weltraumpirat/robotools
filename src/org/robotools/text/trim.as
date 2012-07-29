@@ -21,15 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics.drawing {
-
-	public class BackgroundType {
-		public static const FILL:String = "fill";
-
-		public static const IMAGE:String = "image";
-
-		public static const NONE:String = "none";
-
-		public static const OUTLINE:String = "outline";
+package org.robotools.text {
+	public function trim( str:String ):String {
+		return stripTrailingWhitespace( stripLeadingWhitespace( str ) );
 	}
 }

@@ -19,18 +19,17 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	import org.as3commons.reflect.Type;
 
 	/**
-		 * Copies the values from the source instance to the target instance,
-		 * using class information from the target type. Values will not be copied
-		 * if a field does not exist on either the source or the target.
-		 * 
-		 * @param from Any object instance.
-		 * @param to Any other object instance.
-		 */
+	 * Copies the values from the source instance to the target instance,
+	 * using class information from the target type. Values will not be copied
+	 * if a field does not exist on either the source or the target.
+	 *
+	 * @param from Any object instance.
+	 * @param to Any other object instance.
+	 */
 	public function copyTo( from:*, to:* ):* {
 		var type:Type = Type.forInstance( from );
 		return ObjectCopy.copyValues( from, to, type );

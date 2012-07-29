@@ -19,10 +19,9 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.parsing
-{
+package org.robotools.data.parsing {
 	public function parseToInt( num:String ):int {
-		if(num == null) return 0;
+		if( num == null ) return 0;
 		var n:int = parseInt( num );
 		return isNaN( n ) ? 0 : n;
 	}

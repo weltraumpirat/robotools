@@ -19,9 +19,8 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.comparison
-{
-	public function equalPrimitiveValues(obj:*, compareObj:*):Boolean {
+package org.robotools.data.comparison {
+	public function equalPrimitiveValues( obj:*, compareObj:* ):Boolean {
 		return obj == compareObj;
 	}
 }

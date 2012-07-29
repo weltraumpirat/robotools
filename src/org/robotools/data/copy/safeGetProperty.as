@@ -19,25 +19,24 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	/**
 	 * Returns the value of the field with the given name, if it
-	 * does exist and has a valid value.  
-	 *  
+	 * does exist and has a valid value.
+	 *
 	 * @param obj Any object instance.
 	 * @param name The name of the field to return.
-	 * @return The field value if it is valid, <code>null</code> 
-	 * 			if any errors occur, or 0 if any number type is <code>NaN</code>.
+	 * @return The field value if it is valid, <code>null</code>
+	 *             if any errors occur, or 0 if any number type is <code>NaN</code>.
 	 */
 	public function safeGetProperty( obj:*, name:String ):* {
 		try {
 			var result:* = obj[name];
-			if ((result is Number || result is int || result is uint ) && isNaN(result)) 
+			if( (result is Number || result is int || result is uint ) && isNaN( result ) )
 				return 0;
-			else 
+			else
 				return result;
-		} catch (e:Error) {
+		} catch( e:Error ) {
 		}
 		return null;
 	}

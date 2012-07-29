@@ -19,17 +19,16 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	import org.as3commons.reflect.Type;
 
 	/**
 	 * Creates a deep copy of the provided instance.
-	 * 
+	 *
 	 * @param from Any object instance.
 	 * @return A deep copy.
 	 */
-	 public function copy( from:* ):* {
+	public function copy( from:* ):* {
 		var type:Type = Type.forInstance( from );
 		return ObjectCopy.toType( from, type );
 	}

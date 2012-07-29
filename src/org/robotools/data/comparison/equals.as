@@ -19,12 +19,11 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.comparison
-{
+package org.robotools.data.comparison {
 	public function equals( obj:*, compareObj:* ):Boolean {
-		if(PrimitiveValueComparison.fails( obj, compareObj )) return false;
-		if(ArrayComparison.fails( obj, compareObj )) return false;
-		if(PropertyComparison.fails( obj, compareObj )) return false;
+		if( PrimitiveValueComparison.fails( obj, compareObj ) ) return false;
+		if( ArrayComparison.fails( obj, compareObj ) ) return false;
+		if( PropertyComparison.fails( obj, compareObj ) ) return false;
 		return true;
 	}
 }
@@ -37,11 +36,9 @@ import org.robotools.data.comparison.isEnumerableObj;
 import org.robotools.data.comparison.isPrimitiveObj;
 import org.robotools.data.enumerateProperties;
 
-
-internal class PropertyComparison
-{
+internal class PropertyComparison {
 	public static function fails( obj:*, compareObj:* ):Boolean {
-		if(haveAtLeastOneEnumerableValue( obj, compareObj )) {
+		if( haveAtLeastOneEnumerableValue( obj, compareObj ) ) {
 			var notBothEnumerable:Boolean = notBothEnumerableValues( obj, compareObj );
 			var notEqualValues:Boolean = doNotHaveEqualValues( obj, compareObj );
 			return notBothEnumerable || notEqualValues;
@@ -68,8 +65,8 @@ internal class PropertyComparison
 	}
 
 	private static function haveDifferentValues( keys:Array, obj:*, compareObj:* ):Boolean {
-		for each( var key:String in keys)
-			if(different( obj[key], compareObj[key] )) return true;
+		for each( var key:String in keys )
+			if( different( obj[key], compareObj[key] ) ) return true;
 		return false;
 	}
 
@@ -78,10 +75,9 @@ internal class PropertyComparison
 	}
 }
 
-internal class PrimitiveValueComparison
-{
+internal class PrimitiveValueComparison {
 	public static function fails( obj:*, compareObj:* ):Boolean {
-		if(haveAtLeastOnePrimitiveValue( obj, compareObj )) {
+		if( haveAtLeastOnePrimitiveValue( obj, compareObj ) ) {
 			var mixedTypes:Boolean = includesBothComplexAndPrimitiveValues( obj, compareObj );
 			var notEqualValues:Boolean = doNotHaveEqualValues( obj, compareObj );
 			return mixedTypes || notEqualValues;
@@ -99,10 +95,9 @@ internal class PrimitiveValueComparison
 	}
 }
 
-internal class ArrayComparison
-{
+internal class ArrayComparison {
 	public static function fails( obj:*, compareObj:* ):Boolean {
-		if( haveAtLeastOneArray( obj, compareObj )) {
+		if( haveAtLeastOneArray( obj, compareObj ) ) {
 			var notBothArrays:Boolean = areNotBothArrays( obj, compareObj );
 			var notEqualLength:Boolean = doNotHaveEqualLength( obj, compareObj );
 			var notEqualValues:Boolean = doNotHaveEqualValues( obj, compareObj );
@@ -121,7 +116,7 @@ internal class ArrayComparison
 
 	private static function doNotHaveEqualValues( obj:*, compareObj:* ):Boolean {
 		var i:int = 0;
-		while(i < obj.length && equals( obj[i], compareObj[i] ) ) i++;
+		while( i<obj.length && equals( obj[i], compareObj[i] ) ) i++;
 		return i != obj.length;
 	}
 

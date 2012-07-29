@@ -19,37 +19,33 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics
-{
-	import org.robotools.graphics.error.GraphicsException;
-
+package org.robotools.graphics {
 	import flash.geom.Point;
 
+	import org.robotools.graphics.error.GraphicsException;
+
 	public function globalPosition( displayObject:* ):Point {
-		if(displayObject)
-			return Position.getGlobal( displayObject );
-		else
+		if( !displayObject )
 			throw new GraphicsException( "The argument for globalPosition() must not be null." );
-		return new Point();
+		else
+			return Position.getGlobal( displayObject );
 	}
 }
-import org.robotools.graphics.error.GraphicsException;
 
 import flash.geom.Point;
 
+import org.robotools.graphics.error.GraphicsException;
 
-internal class Position
-{
+internal class Position {
 	public static function getLocal( displayObject:* ):Point {
 		return new Point( displayObject.x, displayObject.y );
 	}
 
 	public static function getGlobal( item:* ):Point {
 		var parent:* = item.parent;
-		if( parent ) {
-			var local:Point = getLocal( item );
-			return parent.localToGlobal( local );
-		} else throw new GraphicsException( "You must first add the argument display object to the display list." );
-		return new Point();
+		if( !parent )
+			throw new GraphicsException( "You must first add the argument display object to the display list." );
+		else
+			return parent.localToGlobal( getLocal( item ) );
 	}
 }

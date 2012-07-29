@@ -19,11 +19,10 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.text
-{
+package org.robotools.text {
 	public function dateAsString( date:Date ):String {
-		var day:String = leadingZeros (date.getDate(), 2);
-		var month:String = leadingZeros (date.getMonth()+1, 2);
+		var day:String = leadingZeros( date.getDate(), 2 );
+		var month:String = leadingZeros( date.getMonth()+1, 2 );
 		return day+"-"+month+"-"+date.getFullYear();
 	}
 }

@@ -19,11 +19,9 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics.error
-{
+package org.robotools.graphics.error {
 
-	public class GraphicsException extends Error
-	{
+	public class GraphicsException extends Error {
 		public static const PARAMETER_ERROR:String = "parameterError";
 
 		public function GraphicsException( msg:* = "", id:* = 0 ) {

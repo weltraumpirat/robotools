@@ -19,11 +19,10 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	/**
 	 * Copies all dynamic properties from the source to the target.
-	 * 
+	 *
 	 * @param from Any object instance.
 	 * @param to Any other object instance.
 	 */

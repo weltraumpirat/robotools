@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.parsing
-{
+package org.robotools.data.parsing {
 	public function splitToVector( str:String, delimiter:* ):Vector.<String> {
 		var arr:Array = str.split( delimiter );
 		return Vector.<String>( arr );

@@ -19,11 +19,10 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data
-{
+package org.robotools.data {
 	public function enumerateProperties( obj:* ):Array {
 		var keys:Array = [];
-		for( var key : * in obj )
+		for( var key:* in obj )
 			keys.push( key );
 		return keys;
 	}

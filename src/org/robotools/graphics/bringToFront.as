@@ -19,28 +19,26 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics
-{
-	import org.robotools.graphics.error.GraphicsException;
-
+package org.robotools.graphics {
 	import flash.display.DisplayObject;
 
+	import org.robotools.graphics.error.GraphicsException;
+
 	public function bringToFront( obj:DisplayObject ):void {
-		if(obj) ChildIndex.setToHighest( obj );
+		if( obj ) ChildIndex.setToHighest( obj );
 		else throw new GraphicsException( "The argument for bringToFront() must not be null." );
 	}
 }
-import org.robotools.graphics.error.GraphicsException;
 
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 
+import org.robotools.graphics.error.GraphicsException;
 
-internal class ChildIndex
-{
+internal class ChildIndex {
 	public static function setToHighest( obj:DisplayObject ):void {
 		var container:DisplayObjectContainer = obj.parent;
-		if(container) container.setChildIndex( obj, container.numChildren-1 );
+		if( container ) container.setChildIndex( obj, container.numChildren-1 );
 		else throw new GraphicsException( "You must first add the argument display object to the display list." );
 	}
 }

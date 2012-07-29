@@ -19,12 +19,11 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics
-{
-	import org.robotools.graphics.error.GraphicsException;
-
+package org.robotools.graphics {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+
+	import org.robotools.graphics.error.GraphicsException;
 
 	public function copyAsBitmap( source:Sprite ):Bitmap {
 		if( source )
@@ -34,21 +33,22 @@ package org.robotools.graphics
 		return new Bitmap();
 	}
 }
+
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.PixelSnapping;
 import flash.display.Sprite;
 import flash.geom.Matrix;
 
-
-internal class BitmapCopy
-{
+internal class BitmapCopy {
 	public static function getCopy( source:Sprite ):Bitmap {
 		source.cacheAsBitmap = true;
+		return new Bitmap( createCopyBitmapData( source ), PixelSnapping.AUTO, true );
+	}
 
+	private static function createCopyBitmapData( source:Sprite ):BitmapData {
 		var bitmapData:BitmapData = new BitmapData( source.width, source.height, true, 0xFFFFFF );
 		bitmapData.draw( source, new Matrix(), null, null, null, true );
-
-		return new Bitmap( bitmapData, PixelSnapping.AUTO, true );
+		return bitmapData;
 	}
 }

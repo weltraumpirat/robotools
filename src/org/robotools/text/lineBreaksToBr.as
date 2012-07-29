@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.text
-{
+package org.robotools.text {
 	public function lineBreaksToBr( str:String ):String {
 		return str.replace( /[\r\n]/gi, "<br />" );
 	}

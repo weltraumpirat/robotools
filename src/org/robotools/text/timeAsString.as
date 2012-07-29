@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.text
-{
+package org.robotools.text {
 	public function timeAsString( date:Date ):String {
 		var hours:String = leadingZeros( date.getHours(), 2 );
 		var minutes:String = leadingZeros( date.getMinutes(), 2 );

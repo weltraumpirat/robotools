@@ -19,38 +19,36 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.copy
-{
+package org.robotools.data.copy {
 	import org.as3commons.reflect.Type;
 
 	/**
 	 * Creates a shallow copy of the provided instance.
-	 * 
+	 *
 	 * @param from Any object instance.
 	 * @return A shallow copy.
 	 */
-	 
+
 	public function shallowCopy( from:* ):* {
 		var type:Type = Type.forInstance( from );
 		return ShallowObjectCopy.toType( from, type );
 	}
 }
+
 import org.as3commons.reflect.Accessor;
 import org.as3commons.reflect.Type;
 import org.as3commons.reflect.Variable;
 
-
-internal class ShallowObjectCopy
-{
+internal class ShallowObjectCopy {
 	/**
-	 * Creates an object of the desired type and populates its content with 
+	 * Creates an object of the desired type and populates its content with
 	 * the values from the provided instance.
 	 * @param from Any object instance.
 	 * @param type The desired type.
 	 * @return A shallow copy.
 	 */
 	public static function toType( from:*, type:Type ):* {
-		if(isComplexType( type.name ))
+		if( isComplexType( type.name ) )
 			return toComplexType( from, type );
 		else
 			return from;
@@ -63,7 +61,7 @@ internal class ShallowObjectCopy
 
 	private static function toComplexType( from:*, type:Type ):* {
 		var to:* = new type.clazz();
-		if(isArrayType( type.name ))
+		if( isArrayType( type.name ) )
 			copyElements( from, to );
 		else
 			copyValues( from, to, type );
@@ -71,11 +69,11 @@ internal class ShallowObjectCopy
 	}
 
 	private static function isArrayType( typeName:String ):Boolean {
-		return typeName == "Array" || typeName.indexOf( "Vector.<" ) >= 0;
+		return typeName == "Array" || typeName.indexOf( "Vector.<" )>=0;
 	}
 
 	private static function copyElements( from:*, to:* ):void {
-		for(var i:int = 0; i < from.length; i++)
+		for( var i:int = 0; i<from.length; i++ )
 			to[i] = from[i];
 	}
 
@@ -86,25 +84,25 @@ internal class ShallowObjectCopy
 	}
 
 	private static function copyProperties( from:*, to:* ):void {
-		for(var key:String in from)
+		for( var key:String in from )
 			copyValue( to, key, from );
 	}
 
 	private static function copyAccessors( type:Type, to:*, from:* ):void {
-		for each(var accessor:Accessor in type.accessors)
-			if(accessor.isWriteable())
+		for each( var accessor:Accessor in type.accessors )
+			if( accessor.isWriteable() )
 				copyValue( to, accessor.name, from );
 	}
 
 	private static function copyVariables( type:Type, to:*, from:* ):void {
-		for each(var variable:Variable in type.variables)
+		for each( var variable:Variable in type.variables )
 			copyValue( to, variable.name, from );
 	}
 
 	private static function copyValue( to:*, field:String, from:* ):void {
 		try {
 			to[field] = from[field];
-		} catch (e:Error) {
+		} catch( e:Error ) {
 		}
 	}
 }

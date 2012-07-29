@@ -19,8 +19,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.data.comparison
-{
+package org.robotools.data.comparison {
 	import org.as3commons.reflect.Type;
 
 	public function isPrimitiveObj( obj:* ):Boolean {
