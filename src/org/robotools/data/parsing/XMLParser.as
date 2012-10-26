@@ -81,7 +81,6 @@ package org.robotools.data.parsing {
 		 */
 		public function parse( node:XML ):* {
 			var ret:* = applyMapping( node );
-			trace( node.name()+" => "+ret );
 			return ret;
 		}
 
@@ -101,7 +100,6 @@ package org.robotools.data.parsing {
 					var childName:String = child.name().toString();
 					_nameMap[childName] ||= plural( childName );
 					var propertyName:String = _nameMap[childName];
-					trace( childName+" => "+propertyName );
 					ret[propertyName] ||= new ArrayCollection();
 					ret[propertyName].addItem( childObj );
 				}
