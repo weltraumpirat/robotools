@@ -32,7 +32,7 @@ package org.robotools.data.sorting {
 			var fields:Array = [];
 			var i:int = -1;
 			while( ++i<fieldNames.length )
-				fields[i] = new NumericSortField( fieldNames[i] );
+				fields[i] = new AlphabeticSortField( fieldNames[i] );
 			return fields;
 		}
 	}
