@@ -4,7 +4,7 @@ package org.robotools.text
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
-
+	import org.robotools.text.endsWith;
 
 	public class TextFunctionsTest
 	{
@@ -14,6 +14,22 @@ package org.robotools.text
 
 		[Before]
 		public function setUp():void {
+		}
+
+		[Test]
+		public function checksIfAStringEndsWithTheGivenSubstring():void {
+			assertTrue( endsWith("task","k"));
+			assertFalse( endsWith("task","s"));
+		}
+
+		[Test]
+		public function givesProperPluralForm():void {
+			assertEquals( "tasks", plural("tasks"));
+			assertEquals( "ceremonies", plural("ceremony"));
+			assertEquals( "kisses", plural("kiss"));
+			assertEquals( "keys", plural("key"));
+			assertEquals( "harmonicas", plural("harmonica"));
+			assertEquals( "responses", plural("response") );
 		}
 
 		[Test]
