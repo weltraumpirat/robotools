@@ -23,6 +23,11 @@
  */
 
 package org.robotools.text {
+	/**
+	 * Returns the appropriate English plural form, e.g. node => nodes, key => keys, story => stories, etc.
+	 * @param str The String to convert.
+	 * @return The proper plural form.
+	 */
 	public function plural( str:String ):String {
 		if( endsWith( str, "y" ) && !endsWith( str, "ey" ) )
 			return str.substring( 0, str.length-1 )+"ies";
@@ -33,6 +38,6 @@ package org.robotools.text {
 		if( endsWith( str, "s" ) )
 			return str;
 
-		return str.concat( "s" );
+		return str+"s";
 	}
 }

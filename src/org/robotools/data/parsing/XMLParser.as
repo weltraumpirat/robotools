@@ -33,25 +33,52 @@ package org.robotools.data.parsing {
 		private var _mappings:Dictionary;
 		private var _nameMap:Object;
 
+		/**
+		 * Constructor
+		 */
 		public function XMLParser() {
 			_nameMap = {};
 			_mappings = new Dictionary();
 			addMapping( "__default", new XMLMapping( Object ) );
 		}
 
+		/**
+		 * Destructor.
+		 */
 		public function destroy():void {
 			_mappings = null;
+			_nameMap = null;
 		}
 
+		/**
+		 * Returns a dictionary containing all XMLMappings.
+		 */
 		public function get mappings():Dictionary {
 			return _mappings;
 		}
+
+		/**
+		 * Adds an XMLMapping.
+		 *
+		 * @param nodeName The tag name to look for, e.g.: "node" will trigger on &lt;node&gt;
+		 * @param mapping The XMLMapping to call.
+		 * @param mappedElementName If the newly created object is the child of another object, this
+		 *                             will be the property name under which the children can be found.
+		 *                             E.g. "childNodes" => obj.childNodes
+		 */
 
 		public function addMapping( nodeName:String, mapping:XMLMapping, mappedElementName:String = null ):void {
 			_mappings[nodeName] = mapping;
 			_nameMap[nodeName] = mappedElementName;
 		}
 
+		/**
+		 * Recursively parses the given XML node and returns an object hierarchy.  If there is no specific mapping for
+		 * an element, a simple dynamic Object will be created by default. To ingore elements, create an EmptyNodeMapping.
+		 *
+		 * @param node The XML to parse
+		 * @return An object hierarchy of the types specified by the parser's XMLMappings.
+		 */
 		public function parse( node:XML ):* {
 			var ret:* = applyMapping( node );
 			trace( node.name()+" => "+ret );
@@ -72,14 +99,14 @@ package org.robotools.data.parsing {
 				try {
 					var childObj:* = applyMapping( child );
 					var childName:String = child.name().toString();
-					_nameMap[childName] ||= plural(childName);
+					_nameMap[childName] ||= plural( childName );
 					var propertyName:String = _nameMap[childName];
-					trace( childName+" => "+propertyName);
+					trace( childName+" => "+propertyName );
 					ret[propertyName] ||= new ArrayCollection();
 					ret[propertyName].addItem( childObj );
 				}
 				catch( ignore:Error ) {
-					trace(ignore.message);
+					trace( ignore.message );
 				}
 			}
 			return ret;

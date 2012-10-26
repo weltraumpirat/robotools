@@ -23,8 +23,13 @@
  */
 
 package org.robotools.text {
+	/**
+	 * Returns true if the haystack ends with the specified needle.
+	 * @param haystack
+	 * @param needle
+	 * @return A Boolean.
+	 */
 	public function endsWith( haystack:String, needle:String ):Boolean {
-		trace(haystack.lastIndexOf(needle));
 		return haystack.lastIndexOf( needle ) == haystack.length - needle.length;
 	}
 }

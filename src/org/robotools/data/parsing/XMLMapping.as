@@ -26,10 +26,19 @@ package org.robotools.data.parsing {
 	public class XMLMapping {
 		private var _clazz:Class;
 
+		/**
+		 * Constructor
+		 * @param clazz The type that should be created when this mapping is triggered.
+		 */
 		public function XMLMapping( clazz:Class ) {
 			_clazz = clazz;
 		}
 
+		/**
+		 * Creates a new object of the specified type from the XML given.
+		 * @param node The XML to parse.
+		 * @return An object of the specified type for this XMLMapping.
+		 */
 		public function map( node:XML ): * {
 			var obj:* = new _clazz();
 			obj = copyAttributes( node, obj );
@@ -50,6 +59,9 @@ package org.robotools.data.parsing {
 			return obj;
 		}
 
+		/**
+		 * Returns the type associated with this XMLMapping.
+		 */
 		public function get clazz():Class {
 			return _clazz;
 		}
