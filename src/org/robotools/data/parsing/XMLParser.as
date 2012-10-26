@@ -27,14 +27,16 @@ package org.robotools.data.parsing {
 
 	import mx.collections.ArrayCollection;
 
-	import org.robotools.data.XMLMapping;
 	import org.robotools.text.plural;
 
 	public class XMLParser {
 		private var _mappings:Dictionary;
+		private var _nameMap:Object;
 
 		public function XMLParser() {
+			_nameMap = {};
 			_mappings = new Dictionary();
+			addMapping( "__default", new XMLMapping( Object ) );
 		}
 
 		public function destroy():void {
@@ -45,30 +47,40 @@ package org.robotools.data.parsing {
 			return _mappings;
 		}
 
-		public function addMapping( nodeName:String, mapping:XMLMapping ):void {
+		public function addMapping( nodeName:String, mapping:XMLMapping, mappedElementName:String = null ):void {
 			_mappings[nodeName] = mapping;
+			_nameMap[nodeName] = mappedElementName;
 		}
 
 		public function parse( node:XML ):* {
-			return applyMapping( node );
+			var ret:* = applyMapping( node );
+			trace( node.name()+" => "+ret );
+			return ret;
 		}
 
 		private function applyMapping( node:XML ):* {
-			var mapping:XMLMapping = mappings[node.name()];
+			var mapName:String = node.name().toString();
+			mapName = mappings.hasOwnProperty( mapName ) ? mapName : "__default";
+			var mapping:XMLMapping = mappings[mapName];
 			var ret:* = mapping.map( node );
 			ret = mapChildNodes( node, ret );
 			return ret;
 		}
 
 		private function mapChildNodes( node:XML, ret:* ):* {
-			try {
-				for each( var child:XML in node.elements() ) {
+			for each( var child:XML in node.elements() ) {
+				try {
 					var childObj:* = applyMapping( child );
-					var name:String = plural( child.name() );
-					ret[name] ||= new ArrayCollection();
-					ret[name].addItem( childObj );
+					var childName:String = child.name().toString();
+					_nameMap[childName] ||= plural(childName);
+					var propertyName:String = _nameMap[childName];
+					trace( childName+" => "+propertyName);
+					ret[propertyName] ||= new ArrayCollection();
+					ret[propertyName].addItem( childObj );
 				}
-			} catch( ignore:Error ) {
+				catch( ignore:Error ) {
+					trace(ignore.message);
+				}
 			}
 			return ret;
 		}

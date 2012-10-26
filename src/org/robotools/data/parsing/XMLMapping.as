@@ -49,5 +49,9 @@ package org.robotools.data.parsing {
 			}
 			return obj;
 		}
+
+		public function get clazz():Class {
+			return _clazz;
+		}
 	}
 }
