@@ -23,7 +23,7 @@ package org.robotools.data.copy {
 	import org.as3commons.reflect.Accessor;
 	import org.as3commons.reflect.Type;
 	import org.as3commons.reflect.Variable;
-	import org.robotools.data.enumerateProperties;
+	import org.robotools.data.enumerateKeys;
 
 	/**
 	 * Copies all dynamic properties from the source to the target.
@@ -39,7 +39,7 @@ package org.robotools.data.copy {
 	 */
 	public function safeCopyProperties( from:*, to:*, type:Type = null ):* {
 		var toType:Type = type ? type : Type.forInstance( to );
-		var props:Array = enumerateProperties( from );
+		var props:Array = enumerateKeys( from );
 
 		for each( var acc:Accessor in toType.accessors )
 			if( props.indexOf( acc.name )>-1 )

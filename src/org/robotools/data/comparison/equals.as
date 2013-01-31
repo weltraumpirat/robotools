@@ -34,7 +34,7 @@ import org.robotools.data.comparison.includesBothComplexAndPrimitiveValues;
 import org.robotools.data.comparison.isArrayObj;
 import org.robotools.data.comparison.isEnumerableObj;
 import org.robotools.data.comparison.isPrimitiveObj;
-import org.robotools.data.enumerateProperties;
+import org.robotools.data.enumerateKeys;
 
 internal class PropertyComparison {
 	public static function fails( obj:*, compareObj:* ):Boolean {
@@ -59,8 +59,8 @@ internal class PropertyComparison {
 	}
 
 	private static function commonKeysArrayOrNull( obj:*, compareObj:* ):Array {
-		var keys:Array = enumerateProperties( obj );
-		var compareKeys:Array = enumerateProperties( compareObj );
+		var keys:Array = enumerateKeys( obj );
+		var compareKeys:Array = enumerateKeys( compareObj );
 		return equals( keys, compareKeys ) ? keys : null;
 	}
 

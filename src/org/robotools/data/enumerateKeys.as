@@ -20,10 +20,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.robotools.data {
-	public function enumerateProperties( obj:* ):Array {
+	public function enumerateKeys( obj:* ):Array {
 		var keys:Array = [];
 		for( var key:* in obj )
-			keys.push( key );
+			keys[keys.length] = key;
 		return keys;
 	}
 }
