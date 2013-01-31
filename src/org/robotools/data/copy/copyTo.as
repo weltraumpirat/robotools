@@ -31,7 +31,10 @@ package org.robotools.data.copy {
 	 * @param to Any other object instance.
 	 */
 	public function copyTo( from:*, to:* ):* {
-		var type:Type = Type.forInstance( from );
-		return ObjectCopy.copyValues( from, to, type );
+		if( from != null ) {
+			var type:Type = Type.forInstance( from );
+			return ObjectCopy.copyValues( from, to, type );
+		} else
+			return to;
 	}
 }
