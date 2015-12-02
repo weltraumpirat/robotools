@@ -30,7 +30,7 @@ package org.robotools.graphics {
 	internal class ChildIndex {
 		public static function setToHighest( obj:DisplayObject ):void {
 			var container:DisplayObjectContainer = obj.parent;
-			if( container )
+			if( container != null )
 				container.setChildIndex( obj, container.numChildren-1 );
 			else
 				throw new GraphicsException( "You must first add the argument display object to the display list." );
@@ -38,7 +38,7 @@ package org.robotools.graphics {
 
 		public static function setToLowest( obj:DisplayObject ):void {
 			var container:DisplayObjectContainer = obj.parent;
-			if( container )
+			if( container != null)
 				container.setChildIndex( obj, 0 );
 			else
 				throw new GraphicsException( "You must first add the argument display object to the display list." );

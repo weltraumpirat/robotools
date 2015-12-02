@@ -55,29 +55,26 @@ package org.robotools.graphics.drawing {
 
 		public function validate() : Boolean {
 			if( incompleteSetOfDivisionParameters() )
-				throw new GraphicsException( GraphicsException.PARAMETER_ERROR,
-											 "Your Gradient must have the same number of parameters for alphas, colors and ratios." );
-
-
-			if( !_dimensions )
-				throw new GraphicsException( GraphicsException.PARAMETER_ERROR,
-											 "You must set the dimensions for your Gradient." );
-
-
+				throw new GraphicsException( "Your Gradient must have the same number of parameters for alphas, colors and ratios.",
+											 GraphicsException.PARAMETER_ERROR );
+			if( _dimensions == null )
+				throw new GraphicsException( "You must set the dimensions for your Gradient.",
+											 GraphicsException.PARAMETER_ERROR );
 			return true;
 		}
 
 		private function incompleteSetOfDivisionParameters():Boolean {
-			return !(_alphas.length == _colors.length && alphas.length == _ratios.length);
+			return alphas == null || colors == null || ratios == null ||
+				   !(alphas.length == colors.length && alphas.length == ratios.length);
 		}
 
 		public function Gradient( dimensions:Rectangle = null, alphas:Array = null, ratios:Array = null, matrix:Matrix = null, rotation:Number = 0, spreadMethod:String = null ) {
-			_dimensions = dimensions;
-			_alphas = alphas;
-			_ratios = ratios;
-			_matrix = matrix;
+			_dimensions = dimensions != null ? dimensions : _dimensions;
+			_alphas = alphas != null ? alphas : _alphas;
+			_ratios = ratios != null ? ratios : _ratios;
+			_matrix = matrix != null ? matrix : _matrix;
 			_rotation = rotation;
-			_spreadMethod = spreadMethod;
+			_spreadMethod = spreadMethod != null ? spreadMethod : _spreadMethod;
 		}
 
 		public function get alphas():Array {

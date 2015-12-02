@@ -38,17 +38,23 @@ package org.robotools.data.copy {
 	 * @return The target instance.
 	 */
 	public function safeCopyProperties( from:*, to:*, type:Type = null ):* {
-		var toType:Type = type ? type : Type.forInstance( to );
-		var props:Array = enumerateKeys( from );
+		if( from != null ) {
+			var toType:Type = type ? type : Type.forInstance( to );
+			var props:Array = enumerateKeys( from );
+			if( toType.isDynamic )
+				for each( var prop:String in props )
+					to[prop] = from[prop];
+			else {
+				for each( var acc:Accessor in toType.accessors )
+					if( props.indexOf( acc.name )> -1 )
+						to[acc.name] = from[acc.name];
 
-		for each( var acc:Accessor in toType.accessors )
-			if( props.indexOf( acc.name )>-1 )
-				to[acc.name] = from[acc.name];
+				for each( var variable:Variable in toType.variables )
+					if( props.indexOf( variable.name )> -1 )
+						to[variable.name] = from[variable.name];
+			}
 
-		for each( var variable:Variable in toType.variables )
-			if( props.indexOf( variable.name )>-1 )
-				to[variable.name] = from[variable.name];
-
+		}
 		return to;
 	}
 }

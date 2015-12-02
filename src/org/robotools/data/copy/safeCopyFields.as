@@ -21,11 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+package org.robotools.data.copy {
+	import org.as3commons.reflect.Accessor;
+	import org.as3commons.reflect.Type;
+	import org.as3commons.reflect.Variable;
+	import org.robotools.data.enumerateFields;
 
-package org.robotools.data.parsing {
-	public function extractInt( value:String ):int {
-		var reg:RegExp = /\d+/g;
-		var parsed:Array = value != null ? reg.exec( value ) : null;
-		return parsed != null ? parseInt( parsed[0] ) : 0;
+	/**
+	 * Copies all primitive field values from the source to the target.
+	 *
+	 * Essentially, this does the same thing as safeCopyProperties(), but for
+	 * non-dynamic classes.
+	 *
+	 * @param from Any object instance.
+	 * @param to Any other object instance.
+	 * @param type The desired target type.
+	 * @return The target instance.
+	 */
+	public function safeCopyFields( from:*, to:*, type:Type = null ):* {
+		var toType:Type = type ? type : Type.forInstance( to );
+		var props:Array = enumerateFields( from );
+
+		for each( var acc:Accessor in toType.accessors )
+			if( props.indexOf( acc.name )> -1 && acc.isWriteable() )
+				try{
+					to[acc.name] = from[acc.name];
+				} catch( ignore:Error) {}
+
+		for each( var variable:Variable in toType.variables )
+			if( props.indexOf( variable.name )> -1 )
+				try {
+					to[variable.name] = from[variable.name];
+				} catch( ignore:Error ) {}
+
+		return to;
 	}
 }

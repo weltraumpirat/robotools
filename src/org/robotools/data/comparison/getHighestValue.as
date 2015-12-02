@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Tobias Goeschel.
+ * Copyright (c) 2013 Tobias Goeschel.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics.drawing {
 
-	public class VerticalAlign {
-		public static const TOP:String = "top";
-
-		public static const BOTTOM:String = "bottom";
-
-		public static const MIDDLE:String = "middle";
-	}
+package org.robotools.data.comparison {
+		public function getHighestValue(value:Number, ...rest) : Number {
+			var ret:Number = value;
+			if ( rest != null)
+				for each( var val2:Number in rest )
+					ret = val2>ret ? val2 : ret;
+			return ret;
+		}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Tobias Goeschel.
+ * Copyright (c) 2013 Tobias Goeschel.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -21,13 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-package org.robotools.graphics.drawing {
 
-	public class VerticalAlign {
-		public static const TOP:String = "top";
+package org.robotools.runtime {
+	public class Listener {
+		public var type:String;
+		public var callback:Function;
 
-		public static const BOTTOM:String = "bottom";
-
-		public static const MIDDLE:String = "middle";
+		public function Listener( type:String = null, callback:Function = null ) {
+			this.type = type;
+			this.callback = callback;
+		}
 	}
 }

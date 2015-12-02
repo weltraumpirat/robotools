@@ -21,10 +21,11 @@
  */
 package org.robotools.data.comparison {
 	public function equals( obj:*, compareObj:* ):Boolean {
-		if( PrimitiveValueComparison.fails( obj, compareObj ) ) return false;
-		if( ArrayComparison.fails( obj, compareObj ) ) return false;
-		if( PropertyComparison.fails( obj, compareObj ) ) return false;
-		return true;
+		return  !PrimitiveValueComparison.fails( obj, compareObj ) &&
+				!PropertyComparison.fails( obj, compareObj ) &&
+				!ArrayComparison.fails( obj, compareObj );
+
+
 	}
 }
 
@@ -81,7 +82,8 @@ internal class PrimitiveValueComparison {
 			var mixedTypes:Boolean = includesBothComplexAndPrimitiveValues( obj, compareObj );
 			var notEqualValues:Boolean = doNotHaveEqualValues( obj, compareObj );
 			return mixedTypes || notEqualValues;
-		} else return false;
+		} else
+			return false;
 	}
 
 	private static function haveAtLeastOnePrimitiveValue( obj:*, compareObj:* ):Boolean {

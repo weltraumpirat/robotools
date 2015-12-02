@@ -22,10 +22,8 @@
 package org.robotools.graphics {
 	import flash.display.DisplayObject;
 
-	import org.robotools.graphics.error.GraphicsException;
-
 	public function bringToFront( obj:DisplayObject ):void {
-		if( obj ) ChildIndex.setToHighest( obj );
-		else throw new GraphicsException( "The argument for bringToFront() must not be null." );
+		if( obj != null )
+			ChildIndex.setToHighest( obj );
 	}
 }
